@@ -9,6 +9,7 @@ int main()
     int a = 2;
     int b = 3;
     int d = 6;
-    int c = a + b + d;
+    int e = 2;
+    int c = a + b + d + e;
     cout << c << endl;
 }
