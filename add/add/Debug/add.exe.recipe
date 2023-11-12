@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>D:\САПР\лаба1\design-automation\add\Debug\add.exe</FullPath>
+=======
+      <FullPath>D:\САПР\лаба1\add\Debug\add.exe</FullPath>
+>>>>>>> update2
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
