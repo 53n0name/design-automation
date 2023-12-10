@@ -1,0 +1,157 @@
+$date
+	Sun Dec 10 19:33:03 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$var wire 32 ! PRWDATA [31:0] $end
+$var wire 32 " PRWADDR [31:0] $end
+$var wire 1 # PREADY $end
+$var wire 32 $ PRDATA1 [31:0] $end
+$var wire 1 % PENABLE $end
+$var reg 32 & PADDR [31:0] $end
+$var reg 1 ' PCLK $end
+$var reg 32 ( PDATA [31:0] $end
+$var reg 1 ) PRESET $end
+$var reg 1 * PSEL $end
+$var reg 1 + PWRITE $end
+$var reg 1 , transfer $end
+$scope module m $end
+$var wire 32 - PADDR [31:0] $end
+$var wire 1 ' PCLK $end
+$var wire 32 . PDATA [31:0] $end
+$var wire 1 ) PRESET $end
+$var wire 1 * PSEL $end
+$var wire 1 + PWRITE $end
+$var wire 1 , transfer $end
+$var wire 1 # PREADY $end
+$var reg 1 % PENABLE $end
+$var reg 32 / PRWADDR [31:0] $end
+$var reg 32 0 PRWDATA [31:0] $end
+$var reg 2 1 state [1:0] $end
+$scope task apb_read $end
+$var reg 32 2 addr [31:0] $end
+$upscope $end
+$scope task apb_write $end
+$var reg 32 3 addr [31:0] $end
+$var reg 32 4 data [31:0] $end
+$upscope $end
+$upscope $end
+$scope module s $end
+$var wire 1 ' PCLK $end
+$var wire 1 % PENABLE $end
+$var wire 1 ) PRESET $end
+$var wire 32 5 PRWADDR [31:0] $end
+$var wire 32 6 PRWDATA [31:0] $end
+$var wire 1 * PSEL $end
+$var wire 1 + PWRITE $end
+$var reg 32 7 PRDATA1 [31:0] $end
+$var reg 1 # PREADY $end
+$var reg 3 8 c [2:0] $end
+$var reg 4 9 state [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 9
+bx 8
+b0 7
+b0 6
+b0 5
+bx 4
+bx 3
+bx 2
+b0 1
+b0 0
+b0 /
+b1111 .
+b10 -
+1,
+0+
+0*
+1)
+b1111 (
+0'
+b10 &
+0%
+b0 $
+0#
+b0 "
+b0 !
+$end
+#5
+1'
+#10
+0'
+1*
+0)
+#15
+b10 1
+1'
+#20
+0'
+#25
+1%
+1'
+#30
+0'
+#35
+b11 1
+b10 "
+b10 /
+b10 5
+b1111 !
+b1111 0
+b1111 6
+b1100001001 $
+b1100001001 7
+b10 2
+1#
+1'
+#40
+0'
+#45
+b10 1
+b1000100010011110100110001011010 $
+b1000100010011110100110001011010 7
+1'
+#50
+0'
+0*
+#55
+0#
+1'
+#60
+0'
+#65
+1'
+#70
+b0 "
+b0 /
+b0 5
+b0 !
+b0 0
+b0 6
+b0 $
+b0 7
+0%
+b0 1
+0'
+1)
+#75
+1'
+#80
+0'
+0)
+#85
+1'
+#90
+0'
