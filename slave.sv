@@ -49,7 +49,8 @@ if (PRESET == 1'b1) begin
     //data_out <= 8'b00000000;
     //miso <= 32'b00000000000000000000000000000000;
     //PREADY <= 1'b0;
-
+    a = 0;
+    b = 0;
     PREADY = 0;
 
     // memory[0] <= 32'h00000309;  // group number
@@ -111,36 +112,36 @@ end else begin
 
         PRDATA1[0] = ((~a[0] & b[0]) | (a[0] & ~b[0]));
         $display("------------ start ------------");
-        $display("%b",a);
-        $display("%b",b);
-        $display("%b",PRDATA1);
+        // $display("%b",a);
+        // $display("%b",b);
+        // $display("%b",PRDATA1);
         s = a[0] & b[0];
 
         for (integer i = 1;i < 32; i = i + 1) begin
             PRDATA1[i] = ((~((~a[i] & b[i]) | (a[i] & ~b[i])) & s) | (((~a[i] & b[i]) | (a[i] & ~b[i])) & ~s));
             s = (a[i] & b[i]) | (a[i] & s) | (b[i] & s);
         end
-        $display("%b",a);
-        $display("%b",b);
-        $display("%b",PRDATA1);
+        // $display("%b",a);
+        // $display("%b",b);
+        // $display("%b",PRDATA1);
 
         // PRDATA1[2] = ((~((~a[2] & b[2]) | (a[2] & ~b[2])) & s) | (((~a[2] & b[2]) | (a[2] & ~b[2])) & ~s));
         // s =(a[2] & b[2]) | (a[2] & s) | (b[2] & s);
 
-        $display("%b",a);
-        $display("%b",b);
-        $display("%b",PRDATA1);
+        // $display("%b",a);
+        // $display("%b",b);
+        // $display("%b",PRDATA1);
 
         // PRDATA1[3] = ((~((~a[3] & b[3]) | (a[3] & ~b[3])) & s) | (((~a[3] & b[3]) | (a[3] & ~b[3])) & ~s));
         // s = (a[3] & b[3]) | (a[3] & s) | (b[3] & s);
 
-        $display("%b",a);
-        $display("%b",b);
-        $display("%b",PRDATA1);
+        $display("a: %b",a);
+        $display("b: %b",b);
+        $display("result: %b",PRDATA1);
 
-        $display("%d",a);
-        $display("%d",b);
-        $display("%d",PRDATA1);
+        $display("a: %d",a);
+        $display("b: %d",b);
+        $display("result: %d",PRDATA1);
 
 
 
