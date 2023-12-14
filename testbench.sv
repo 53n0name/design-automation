@@ -5,7 +5,6 @@ module testbench;
 
 reg [0:0] PCLK;
 reg [0:0] PRESET;
-//reg [0:0] mready;
 
 reg [0:0] PSEL;
 reg [0:0] transfer;
@@ -15,18 +14,23 @@ reg [0:0] PWRITE;
 reg [31:0] PADDR;
 reg [31:0] PDATA;
 
-// reg [31:0] inp_addr;
-// reg [31:0] inp_data;
-
-
 wire [0:0] PENABLE;
 wire [31:0] PRWDATA;
 wire [31:0] PRWADDR;
 
-//reg [31:0] sin_data;
-//wire [31:0] sout_data;
 wire [31:0] PRDATA1;
 wire [0:0] PREADY;
+
+reg [3:0] Sum_reg;     // Регистр для хранения промежуточной BCD суммы
+reg [0:0] Cout_reg;    // Регистр для хранения промежуточного переноса
+
+reg [3:0] A_reg;
+reg [3:0] B_reg;
+reg [0:0] Cin;
+reg [1:0] f;
+
+reg [7:0] out;
+reg [0:0] carry;
 
 master m (
     .PCLK(PCLK),
@@ -49,6 +53,7 @@ slave s (
     .PSEL(PSEL),
     .PENABLE(PENABLE),
     .PWRITE(PWRITE),
+    .f(f),
 
     .PRWDATA(PRWDATA),  // master out, slave in data
     .PRWADDR(PRWADDR),  // master out, slava in addr
@@ -68,70 +73,58 @@ initial begin
     $display("start");
     $dumpfile("testbench.vcd");
     $dumpvars(0,testbench);
-    PADDR = 32'b00000000000000000000000000000010;
-    PDATA = 32'b00000000000000000000000000001111;
-    //out_data = 32'b00000000000000000000000000000000;
-               //32'b00000000000000000000000000000000s
-    //sin_data = 32'b10000000000000000000000000000011;
+    PADDR = 32'b00000000000000000000000000000000;
+    PDATA = 32'h00000309;
 
-    PWRITE = 1'b0;
+    PWRITE = 1'b1;
     
     PCLK = 1'b0;
     PRESET = 0;
     PSEL = 0;
-    //enable = 0;
     transfer = 1'b1;
-    //ready = 0;
-    //mready = 1'b0;
 
     PRESET = 1;
     #10;
-    $display("11");
 
     PRESET = 0;
     PSEL = 1;
-    #10;
-    $display("12");
-
-    //enable = 1;
-    #10;
-    $display("13");
-
-    //mready = 1;
-    #10;
-    $display("14");
-    $display(PENABLE);
-    $display(PSEL);
-    $display(PREADY);
-    $display(PRWDATA);
-    $display(PRDATA1);
-
-
-
-    //mready = 0;
-    #10;
-    $display("15");
-    $display(PRDATA1);
-
+    #40;
 
     PSEL = 0;
-    #10;
-    $display("16");
+    #20;
 
-    //enable = 0;
-    #10;
-    $display("17");
+    f = 2'b01;
+    PADDR = 32'b0000_0000_0000_0000_0000_0000_0000_0100;
+    PDATA = 32'b0110_0000_0000_0000_0000_0000_0000_0001;
+    PSEL = 1;
+    #40;
+    PSEL = 0;
+    #20;
+    $display("-------------------f01");
+    $display(PRDATA1);
 
-    PRESET = 1;
-    #10;
-    $display("18");
+    f = 2'b10;
+    PADDR = 32'b0000_0000_0000_0000_0000_0000_0000_1000;
+    PDATA = 32'b0001_0000_0000_0000_0000_0000_0000_0101;
+    PSEL = 1;
+    #40;
+    PSEL = 0;
+    #20;
+    $display("-------------------f10");
+    $display(PRDATA1);
 
-    PRESET = 0;
-    #10;
-    $display("19");
+    f = 2'b11;
+    PADDR = 32'b0000_0000_0000_0000_0000_0000_0000_1100;
+    PDATA = 32'b0000_0000_0000_0000_0000_0000_0000_1100;
+    PSEL = 1;
+    #40;
+    PSEL = 0;
+    #20;
+    $display("-------------------start");
 
+    $display(PRDATA1);
 
-    $display("end");
+    $display("-------------------end");
     $finish;
 end
 
