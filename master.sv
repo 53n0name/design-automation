@@ -77,10 +77,10 @@ always @(posedge PCLK or posedge PRESET or posedge PENABLE) begin
 
         //заполнение памяти
 
-        memory[0] <= 32'h00000309;  // group number
-        memory[1] <= 32'h07122023;  // date
-        memory[2] <= 32'h444f4c5a;  // last_name
-        memory[3] <= 32'h44454e49;  // first_name
+        // memory[0] <= 32'h00000309;  // group number
+        // memory[1] <= 32'h07122023;  // date
+        // memory[2] <= 32'h444f4c5a;  // last_name
+        // memory[3] <= 32'h44454e49;  // first_name
 
         //else begin
             //$display("(PSEL == 1'b1 && PENABLE == 1'b0)");
