@@ -53,7 +53,6 @@ slave s (
     .PSEL(PSEL),
     .PENABLE(PENABLE),
     .PWRITE(PWRITE),
-    .f(f),
 
     .PRWDATA(PRWDATA),  // master out, slave in data
     .PRWADDR(PRWADDR),  // master out, slava in addr
@@ -73,8 +72,8 @@ initial begin
     $display("start");
     $dumpfile("testbench.vcd");
     $dumpvars(0,testbench);
-    PADDR = 32'b00000000000000000000000000000000;
-    PDATA = 32'h00000309;
+    PADDR = 32'b0000_0000_0000_0000_0000_0000_0000_0000;
+    PDATA = 32'b000_0000_0000_0000_0000_0000_0000_0111;
 
     PWRITE = 1'b1;
     
@@ -93,19 +92,20 @@ initial begin
     PSEL = 0;
     #20;
 
-    f = 2'b01;
+    //f = 2'b01;
     PADDR = 32'b0000_0000_0000_0000_0000_0000_0000_0100;
-    PDATA = 32'b0011_0000_0000_0000_0000_0000_0000_0011;
+    PDATA = 32'b0000_0000_0000_0000_0000_0000_0000_0111;
     PSEL = 1;
     #40;
     PSEL = 0;
     #20;
     $display("-------------------f01");
     $display(PRDATA1);
+    // сделать как на обратной стороне отчета
 
-    f = 2'b10;
+    //f = 2'b10;
     PADDR = 32'b0000_0000_0000_0000_0000_0000_0000_1000;
-    PDATA = 32'b0011_0000_0000_0000_0000_0000_0000_0111;
+    PDATA = 32'b0010_0000_0000_0000_0000_0000_0000_0001;
     PSEL = 1;
     #30;
     PSEL = 0;
@@ -113,7 +113,7 @@ initial begin
     $display("-------------------f10");
     $display(PRDATA1);
 
-    f = 2'b11;
+    //f = 2'b11;
     PADDR = 32'b0000_0000_0000_0000_0000_0000_0000_1100;
     PDATA = 32'b0000_0000_0000_0000_0000_0000_0000_1100;
     PSEL = 1;
@@ -122,7 +122,14 @@ initial begin
     #20;
     $display("-------------------start");
 
-    $display(PRDATA1);
+    if (PRDATA1[31] == 1'b1) begin 
+        $display("-%d",PRDATA1[30:0]);
+    end
+    else begin 
+        $display("%d",PRDATA1[30:0]);
+    end
+
+    $display("%b",PRDATA1);
 
     $display("-------------------end");
     $finish;
